@@ -9,6 +9,7 @@
 namespace App\Models;
 
 
+use App\Exceptions\BaseException;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Facades\Input;
@@ -34,7 +35,13 @@ class Model extends EloquentModel
         return $self->insert($data);
     }
 
-    //批量更新
+    /**
+     * 批量更新
+     *
+     * @param array $multipleData
+     * @return int
+     * @throws BaseException
+     */
     public static function updateBatch($multipleData = [])
     {
         try {
