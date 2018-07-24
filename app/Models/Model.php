@@ -81,6 +81,12 @@ class Model extends EloquentModel
         }
     }
 
+    public static function updateField($request, $eloquent, array $fields)
+    {
+        foreach ($fields as $field) isset($request->$field) && $eloquent->$field = $request->$field;
+        $eloquent->save();
+    }
+
     public static function getLimit($defaultLimit = 15)
     {
         return Input::get('limit') ?: $defaultLimit;
